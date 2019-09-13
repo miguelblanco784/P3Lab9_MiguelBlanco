@@ -60,10 +60,12 @@ class HiloVida{
 		
 		void runnerEstatico(){
 			while(vive){
-				Sleep(espera);
 				while(pausa){
 					
 				}
+				
+				Sleep(espera);
+			
 				
 				if(usuario->getVida() < usuario->getVidamax()){
 					cout<<"1+ De vida"<<endl;

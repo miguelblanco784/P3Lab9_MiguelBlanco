@@ -44,9 +44,6 @@ int main(){
 	h3.run();
 	
 	while(true){
-		int opcion;
-		cout<<"-=Menu=-"<<endl;
-		cout<<"1- Datos del Jugador\n2- Curar Vida ($1)\n0- Salir\nSeleccione opcion: "<<endl;
 		if(usuario->getEnjuego()){
 			h2.setPausa(true);
 			h3.setPausa(true);
@@ -104,6 +101,9 @@ int main(){
 			h1.setPausa(false);
 			usuario->setEnjuegofalse();
 		}else{
+			int opcion;
+			cout<<"-=Menu=-"<<endl;
+			cout<<"1- Datos del Jugador\n2- Curar Vida ($1)\n0- Salir\nSeleccione opcion: "<<endl;
 			cin>>opcion;
 			switch(opcion){
 				case 1:{

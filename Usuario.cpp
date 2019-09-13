@@ -32,6 +32,9 @@ class Usuario{
 			this->enjuego = false;
 		}
 		
+		~Usuario(){
+		}
+		
 		bool getEnjuego(){
 			return enjuego;
 		}

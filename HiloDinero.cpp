@@ -61,10 +61,12 @@ class HiloDinero{
 		
 		void runnerEstatico(){
 			while(vive){
-				Sleep(espera);
 				while(pausa){
 					
 				}
+				
+				Sleep(espera);
+				
 				usuario->setDinero(usuario->getDinero()+1);
 				cout<<"1+ Le agrego dinero!"<<endl;
 				cout<<"Seleccione Opcion: "<<endl;

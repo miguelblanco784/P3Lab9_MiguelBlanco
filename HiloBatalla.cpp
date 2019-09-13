@@ -65,15 +65,19 @@ class HiloBatalla{
 			srand(time(0));
 			
 			while(vive){
-				Sleep(espera);
-				
 				while(pausa){
 				}
+				
+				Sleep(espera);
+				
+				
 				
 				int p;
 				p =(rand()%100)+1;
 				if(p < 80){
+					cout<<"Encontro Batala!!!"<<endl;
 					usuario->setEnjuegotrue();
+					pausa = true;
 				}
 				
 				if(!vive){
