@@ -31,6 +31,13 @@ int main(){
 	h2.setPausa(false);
 	h2.run();
 	
+	HiloDinero h3(usuario);
+	h3.setVive(true);
+	h3.setTexto("Hola Mundo!" );
+	h3.setEspera(6000);
+	h3.setPausa(false);
+	h3.run();
+	
 	while(true){
 		int opcion;
 		cout<<"-=Menu=-"<<endl;
