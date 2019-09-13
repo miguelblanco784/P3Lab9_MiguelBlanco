@@ -27,6 +27,7 @@ class HiloDinero{
 	public:
 		HiloDinero(Usuario* usuario){
 			this->usuario = usuario;
+			pausa = false;
 		}	
 		
 		void setVive(bool v){
@@ -56,13 +57,17 @@ class HiloDinero{
 			static_cast<HiloDinero*>(o)->runnerEstatico();
 		}
 		
+		
+		
 		void runnerEstatico(){
 			while(vive){
 				Sleep(espera);
-				usuario->setDinero(usuario->getDinero()+1);
 				while(pausa){
 					
 				}
+				usuario->setDinero(usuario->getDinero()+1);
+				cout<<"1+ Le agrego dinero!"<<endl;
+				cout<<"Seleccione Opcion: "<<endl;
 				if(!vive){
 					_endthread();
 				}

@@ -8,6 +8,11 @@
 #include <fstream>
 #include "HiloBatalla.cpp"
 #include "HiloDinero.cpp"
+#include "HiloVida.cpp"
+
+#include <ctime>    // For time()
+#include <cstdlib>  // For srand() and rand()
+
 using namespace std;
 
 #include "Usuario.cpp"
@@ -31,7 +36,7 @@ int main(){
 	h2.setPausa(false);
 	h2.run();
 	
-	HiloDinero h3(usuario);
+	HiloVida h3(usuario);
 	h3.setVive(true);
 	h3.setTexto("Hola Mundo!" );
 	h3.setEspera(6000);
@@ -42,24 +47,87 @@ int main(){
 		int opcion;
 		cout<<"-=Menu=-"<<endl;
 		cout<<"1- Datos del Jugador\n2- Curar Vida ($1)\n0- Salir\nSeleccione opcion: "<<endl;
-		cin>>opcion;
-		switch(opcion){
-			case 1:{
-				cout<<"Vida: "<<usuario->getVida()<<"/"<<usuario->getVidamax()<<endl;
-				cout<<"Dinero: "<<usuario->getDinero()<<endl;
-				cout<<"Nivel: "<<usuario->getNivel()<<endl;
-				break;
-			}
-			case 2:{
-				if(usuario->getDinero() != 0){
-					usuario->setDinero(usuario->getDinero()-1);
-					usuario->setVida(usuario->getVida()+1);
+		if(usuario->getEnjuego()){
+			h2.setPausa(true);
+			h3.setPausa(true);
+			h1.setPausa(true);
+			int cont = 0;
+			while(cont < usuario->getNivel()){
+				int herramienta;
+				cout<<"1- Piedra\n2- Papel\n3- Tijera\nIngrese: ";
+				cin>>herramienta;
+				
+				int computadora;
+				computadora = (rand()%3)+1;
+				
+				if(computadora == 1 && herramienta == 1) {
+				    cout << "Empate" << endl;
+				    
+				} else if (computadora == 1 && herramienta == 3) {
+				    cout << "-1 Vida" << endl;
+				    usuario->setVida(usuario->getVida()-1);
+				    
+				} else if (computadora == 2 && herramienta == 2) {
+				    cout << "Empate" << endl;
+				    
+				} else if (computadora == 2 && herramienta == 1) {
+				    cout << "-1 Vida" << endl;
+				    usuario->setVida(usuario->getVida()-1);
+				    
+				} else if (computadora == 3 && herramienta == 3) {
+				    cout << "Empate " << endl;
+				    
+				} else if (computadora == 3 && herramienta == 2) {
+				    cout << "-1 Vida" << endl;
+				    usuario->setVida(usuario->getVida()-1);
+				    
+				} else {
+				    cout << "Ganaste!" << endl;
+				    cont++;
 				}
-				break;
+				
+				
+				if(usuario->getVida() <= 0){
+					cout<<endl<<"Moriste!"<<endl;
+					h1.setVive(false);
+					h2.setVive(false);
+					h3.setVive(false);
+					usuario->~Usuario();
+					delete usuario;
+					exit(0);
+				}	
 			}
-			case 0:{
-				exit(0);
-				break;
+			usuario->setNivel(usuario->getNivel()+1);
+			usuario->setVidmax(usuario->getVidamax()+1);
+			h2.setPausa(false);
+			h3.setPausa(false);
+			h1.setPausa(false);
+			usuario->setEnjuegofalse();
+		}else{
+			cin>>opcion;
+			switch(opcion){
+				case 1:{
+					cout<<"Vida: "<<usuario->getVida()<<"/"<<usuario->getVidamax()<<endl;
+					cout<<"Dinero: "<<usuario->getDinero()<<endl;
+					cout<<"Nivel: "<<usuario->getNivel()<<endl;
+					break;
+				}
+				case 2:{
+					if(usuario->getDinero() != 0){
+						usuario->setDinero(usuario->getDinero()-1);
+						usuario->setVida(usuario->getVida()+1);
+					}
+					break;
+				}
+				case 0:{
+					h1.setVive(false);
+					h2.setVive(false);
+					h3.setVive(false);
+					usuario->~Usuario();
+					delete usuario;
+					exit(0);
+					break;
+				}
 			}
 		}
 	}

@@ -27,6 +27,7 @@ class HiloVida{
 	public:
 		HiloVida(Usuario* usuario){
 			this->usuario = usuario;
+			pausa = false;
 		}	
 		
 		void setVive(bool v){
@@ -48,23 +49,28 @@ class HiloVida{
 		void setPausa(bool x){
 			pausa = x;
 		}
+		
 		void run(){
-			_beginthread(&HiloDinero::runner, 0, static_cast<void*>(this));
+			_beginthread(&HiloVida::runner, 0, static_cast<void*>(this));
 		}
 		
 		static void runner(void* o){
-			static_cast<HiloDinero*>(o)->runnerEstatico();
+			static_cast<HiloVida*>(o)->runnerEstatico();
 		}
 		
 		void runnerEstatico(){
 			while(vive){
 				Sleep(espera);
-				if(usuario->getVida() != usuario->getVidamax()){
-					usuario->setVida(Usuario()->getVida()+1);
-				}
 				while(pausa){
 					
 				}
+				
+				if(usuario->getVida() < usuario->getVidamax()){
+					cout<<"1+ De vida"<<endl;
+					cout<<"Seleccione Opcion:"<<endl;
+					usuario->setVida(usuario->getVida()+1);
+				}
+				
 				if(!vive){
 					_endthread();
 				}

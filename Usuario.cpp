@@ -19,6 +19,7 @@ class Usuario{
 		int vidamax;
 		int nivel;
 		int dinero;
+		bool enjuego;
 	public:
 		Usuario(){
 		}
@@ -28,6 +29,27 @@ class Usuario{
 			this->vidamax = 3;
 			this->nivel = 1;
 			this->dinero = 0;
+			this->enjuego = false;
+		}
+		
+		bool getEnjuego(){
+			return enjuego;
+		}
+		
+		void setEnjuegotrue(){
+			enjuego = true;
+		}
+		
+		void setNivel(int x){
+			nivel = x;
+		}
+		
+		void setVidmax(int x){
+			vidamax = x;
+		}
+		
+		void setEnjuegofalse(){
+			enjuego = false;
 		}
 		
 		int getVida(){

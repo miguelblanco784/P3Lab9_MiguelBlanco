@@ -26,9 +26,11 @@ class HiloBatalla{
 		int espera;
 		string texto;
 		Usuario* usuario;
+		bool pausa;
 	public:
 		HiloBatalla(Usuario* usuario){
 			this->usuario = usuario;
+			pausa = false;
 		}	
 		
 		void setVive(bool v){
@@ -55,56 +57,25 @@ class HiloBatalla{
 			static_cast<HiloBatalla*>(o)->runnerEstatico();
 		}
 		
+		void setPausa(bool x){
+			pausa = x;
+		}
+		
 		void runnerEstatico(){
 			srand(time(0));
 			
 			while(vive){
 				Sleep(espera);
+				
+				while(pausa){
+				}
+				
 				int p;
 				p =(rand()%100)+1;
-				cout<<p<<endl;
 				if(p < 80){
-					int cont = 0;
-					while(cont < usuario->getNivel()){
-						int herramienta;
-						cout<<"1- Piedra\n2- Papel\n3- Tijera\nIngrese: ";
-						cin>>herramienta;
-						
-						int computadora;
-						computadora = (rand()%3)+1;
-						
-						if(computadora == 1 && herramienta == 1) {
-						    cout << "Empate" << endl;
-						    
-						} else if (computadora == 1 && herramienta == 3) {
-						    cout << "-1 Vida" << endl;
-						    usuario->setVida(usuario->getVida()-1);
-						    
-						} else if (computadora == 2 && herramienta == 2) {
-						    cout << "Empate" << endl;
-						    
-						} else if (computadora == 2 && herramienta == 1) {
-						    cout << "-1 Vida" << endl;
-						    usuario->setVida(usuario->getVida()-1);
-						    
-						} else if (computadora == 3 && herramienta == 3) {
-						    cout << "Empate " << endl;
-						    
-						} else if (computadora == 3 && herramienta == 2) {
-						    cout << "-1 Vida" << endl;
-						    usuario->setVida(usuario->getVida()-1);
-						    
-						} else {
-						    cout << "Ganaste!" << endl;
-						    cont++;
-						}
-						
-						if(usuario->getVida() <= 0){
-							cout<<endl<<"Moriste!"<<endl;
-							exit(0);
-						}
-					}	
-				}	
+					usuario->setEnjuegotrue();
+				}
+				
 				if(!vive){
 					_endthread();
 				}
