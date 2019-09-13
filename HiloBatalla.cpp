@@ -57,26 +57,54 @@ class HiloBatalla{
 		
 		void runnerEstatico(){
 			srand(time(0));
-			int p;
+			
 			while(vive){
+				Sleep(espera);
+				int p;
 				p =(rand()%100)+1;
+				cout<<p<<endl;
 				if(p < 80){
-					
-				}
-//				Sleep(espera);
-//				   // current date/time based on current system
-//				   time_t now = time(0);
-//				   
-//				   // convert now to string form
-//				   char* dt = ctime(&now);
-//							
-//				   // convert now to tm struct for UTC
-//				   tm *gmtm = gmtime(&now);
-//				   dt = asctime(gmtm);
-//				ofstream Escribir;
-//				Escribir.open("./hilo.txt",ios::app);
-//				Escribir<<dt<<endl;
-//				Escribir.close();	
+					int cont = 0;
+					while(cont < usuario->getNivel()){
+						int herramienta;
+						cout<<"1- Piedra\n2- Papel\n3- Tijera\nIngrese: ";
+						cin>>herramienta;
+						
+						int computadora;
+						computadora = (rand()%3)+1;
+						
+						if(computadora == 1 && herramienta == 1) {
+						    cout << "Empate" << endl;
+						    
+						} else if (computadora == 1 && herramienta == 3) {
+						    cout << "-1 Vida" << endl;
+						    usuario->setVida(usuario->getVida()-1);
+						    
+						} else if (computadora == 2 && herramienta == 2) {
+						    cout << "Empate" << endl;
+						    
+						} else if (computadora == 2 && herramienta == 1) {
+						    cout << "-1 Vida" << endl;
+						    usuario->setVida(usuario->getVida()-1);
+						    
+						} else if (computadora == 3 && herramienta == 3) {
+						    cout << "Empate " << endl;
+						    
+						} else if (computadora == 3 && herramienta == 2) {
+						    cout << "-1 Vida" << endl;
+						    usuario->setVida(usuario->getVida()-1);
+						    
+						} else {
+						    cout << "Ganaste!" << endl;
+						    cont++;
+						}
+						
+						if(usuario->getVida() <= 0){
+							cout<<endl<<"Moriste!"<<endl;
+							exit(0);
+						}
+					}	
+				}	
 				if(!vive){
 					_endthread();
 				}

@@ -20,7 +20,7 @@ int main(){
 	HiloBatalla h1(usuario);
 	h1.setVive(true);
 	h1.setTexto("Hola Mundo!" );
-	h1.setEspera(5);
+	h1.setEspera(10000);
 	h1.run();
 	
 	while(true){
