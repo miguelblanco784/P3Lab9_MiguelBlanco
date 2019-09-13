@@ -7,3 +7,11 @@
 #include <string>
 #include <fstream>
 
+int main(){
+	
+	
+	
+	
+	system("pause");
+	return 0;
+}
