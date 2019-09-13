@@ -7,11 +7,18 @@
 #include <string>
 #include <fstream>
 
+using namespace std;
+
+#include "Usuario.cpp"
 int main(){
-	
-	
-	
-	
+	string temp;
+	cout<<"Ingrese usuario: ";
+	cin>>temp;
+	Usuario* usuario;
+	usuario = new Usuario(temp);
+	while(true){
+		
+	}
 	system("pause");
 	return 0;
 }
