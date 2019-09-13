@@ -16,6 +16,8 @@ int main(){
 	cin>>temp;
 	Usuario* usuario;
 	usuario = new Usuario(temp);
+	
+	
 	while(true){
 		int opcion;
 		cout<<"-=Menu=-"<<endl;
@@ -23,11 +25,16 @@ int main(){
 		cin>>opcion;
 		switch(opcion){
 			case 1:{
-				
+				cout<<"Vida: "<<usuario->getVida()<<"/"<<usuario->getVidamax()<<endl;
+				cout<<"Dinero: "<<usuario->getDinero()<<endl;
+				cout<<"Nivel: "<<usuario->getNivel()<<endl;
 				break;
 			}
 			case 2:{
-				
+				if(usuario->getDinero() != 0){
+					usuario->setDinero(usuario->getDinero()-1);
+					usuario->setVida(usuario->getVida()+1);
+				}
 				break;
 			}
 			case 0:{

@@ -18,6 +18,7 @@ class Usuario{
 		int vida;
 		int vidamax;
 		int nivel;
+		int dinero;
 	public:
 		Usuario(){
 		}
@@ -26,6 +27,31 @@ class Usuario{
 			this->vida = 1;
 			this->vidamax = 3;
 			this->nivel = 1;
+			this->dinero = 0;
+		}
+		
+		int getVida(){
+			return vida;
+		}
+		
+		int getVidamax(){
+			return vidamax;
+		}
+		
+		int getNivel(){
+			return nivel;
+		}
+		
+		int getDinero(){
+			return dinero;
+		}
+		
+		void setDinero(int dinero){
+			this->dinero = dinero;
+		}
+		
+		void setVida(int vida){
+			this->vida = vida;
 		}
 };
 #endif
