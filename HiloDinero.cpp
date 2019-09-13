@@ -23,6 +23,7 @@ class HiloDinero{
 		int espera;
 		string texto;
 		Usuario* usuario;
+		bool pausa;
 	public:
 		HiloDinero(Usuario* usuario){
 			this->usuario = usuario;
@@ -44,18 +45,24 @@ class HiloDinero{
 			vive = false;
 		}
 		
+		void setPausa(bool x){
+			pausa = x;
+		}
 		void run(){
-			_beginthread(&Hilo::runner, 0, static_cast<void*>(this));
+			_beginthread(&HiloDinero::runner, 0, static_cast<void*>(this));
 		}
 		
 		static void runner(void* o){
-			static_cast<Hilo*>(o)->runnerEstatico();
+			static_cast<HiloDinero*>(o)->runnerEstatico();
 		}
 		
 		void runnerEstatico(){
 			while(vive){
 				Sleep(espera);
-					usuario->setDinero(usuario->getDinero()+1);
+				usuario->setDinero(usuario->getDinero()+1);
+				while(pausa){
+					
+				}
 				if(!vive){
 					_endthread();
 				}

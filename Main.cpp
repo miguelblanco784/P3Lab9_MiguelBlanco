@@ -7,6 +7,7 @@
 #include <string>
 #include <fstream>
 #include "HiloBatalla.cpp"
+#include "HiloDinero.cpp"
 using namespace std;
 
 #include "Usuario.cpp"
@@ -22,6 +23,13 @@ int main(){
 	h1.setTexto("Hola Mundo!" );
 	h1.setEspera(10000);
 	h1.run();
+	
+	HiloDinero h2(usuario);
+	h2.setVive(true);
+	h2.setTexto("Hola Mundo!" );
+	h2.setEspera(7000);
+	h2.setPausa(false);
+	h2.run();
 	
 	while(true){
 		int opcion;
