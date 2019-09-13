@@ -6,7 +6,7 @@
 #include <typeinfo>
 #include <string>
 #include <fstream>
-
+#include "HiloBatalla.cpp"
 using namespace std;
 
 #include "Usuario.cpp"
@@ -17,6 +17,11 @@ int main(){
 	Usuario* usuario;
 	usuario = new Usuario(temp);
 	
+	HiloBatalla h1(usuario);
+	h1.setVive(true);
+	h1.setTexto("Hola Mundo!" );
+	h1.setEspera(5);
+	h1.run();
 	
 	while(true){
 		int opcion;
